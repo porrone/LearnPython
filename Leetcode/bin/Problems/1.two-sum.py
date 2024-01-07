@@ -7,19 +7,12 @@
 # @lc code=start
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        numMap = {}
-        n = len(nums)
-
-        # Build the hash table
-        for i in range(n):
+        numMap = {};
+        for i in range(len(nums)):
+            inverse = target - nums[i]
+            if inverse in numMap:
+                return [i,numMap[inverse]]
             numMap[nums[i]] = i
-
-        # Find the complement
-        for i in range(n):
-            complement = target - nums[i]
-            if complement in numMap and numMap[complement] != i:
-                return [i, numMap[complement]]
-
-        return []  # No solution found
+        return []
         
 # @lc code=end
