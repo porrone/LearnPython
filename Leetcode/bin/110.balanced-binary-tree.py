@@ -55,14 +55,14 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isBalanced(self, root: Optional[TreeNode],maxLeft=0,maxRight=0) -> bool:
-        return True if abs(maxRight-maxLeft)<2 else False
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        return self.height(root) != -1
 
-    def height(self, root: Optional[TreeNode],maxLeft=0,maxRight=0) -> Optional[TreeNode]:
-        if root.left: 
-            self.isBalanced(root.left,maxLeft+1,maxRight)
-        if root.right: 
-            self.isBalanced(root.right,maxLeft,maxRight+1)
-        return root
+    def height(self, root: Optional[TreeNode]) -> int:
+        if not root: return 0
+        left, right = self.height(root.left), self.height(root.right)
+        if left == -1 or right == -1 or abs(left-right)>1:
+            return -1
+        return 1 + max(left,right)
 # @lc code=end
 # [1,2,2,3,3,null,null,4,4]
