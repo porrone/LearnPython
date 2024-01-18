@@ -45,11 +45,13 @@ class Solution:
         numMap = {}
         maxElement = 0
         answer = 0
+        length = len(nums)
         for num in nums:
             numMap[num] = (numMap[num] + 1) if numMap.get(num) else 1
-            if numMap[num] > maxElement:
-                answer = num
-                maxElement = numMap[num]
-        return answer
+            if numMap[num] > length/2: return num
+        #     if numMap[num] > maxElement:
+        #         answer = num
+        #         maxElement = numMap[num]
+        # return answer
 # @lc code=end
 
