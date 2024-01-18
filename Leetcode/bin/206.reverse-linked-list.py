@@ -61,14 +61,13 @@
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         if not head: return head
-        stack = []
-        while head.next:
-            stack.append(head.val)
-            head = head.next
-        answer = head
-        while stack:
-            head.next = ListNode(stack.pop())
-            head = head.next
-        return answer
+        newList = None
+        current = head
+        while current:
+            nextNode = current.next
+            current.next = newList
+            newList = current
+            current = nextNode
+        return newList
 # @lc code=end
 
