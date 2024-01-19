@@ -40,13 +40,18 @@ class Solution:
         ans = ""
         carry = 0
         
-        while len(a) != len(b):
-            if len(a)>len(b): b = "0"+b
-            else : a = "0"+a
+        aLen = len(a)
+        bLen = len(b)
         
-        length = len(a)
+        while aLen != bLen:
+            if aLen>bLen: 
+                b = "0"+b
+                bLen += 1
+            else : 
+                a = "0"+a
+                aLen += 1
         
-        for i in range(-1,-length-1,-1):
+        for i in range(-1,-aLen-1,-1):
             sum = int(a[i]) + int(b[i]) + carry
             if sum == 3:
                 ans = "1" + ans
