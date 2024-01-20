@@ -41,6 +41,7 @@
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
         return False if len(nums) == len(set(nums)) else True
+    
         # numMap = {}
         # for num in nums:
         #     numMap[num] = numMap[num] + 1 if numMap.get(num) else 1
