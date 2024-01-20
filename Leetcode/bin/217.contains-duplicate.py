@@ -40,10 +40,11 @@
 # @lc code=start
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
-        numMap = {}
-        for num in nums:
-            numMap[num] = numMap[num] + 1 if numMap.get(num) else 1
-            if numMap[num] > 1: return True
-        return False
+        return False if len(nums) == len(set(nums)) else True
+        # numMap = {}
+        # for num in nums:
+        #     numMap[num] = numMap[num] + 1 if numMap.get(num) else 1
+        #     if numMap[num] > 1: return True
+        # return False
 # @lc code=end
 
