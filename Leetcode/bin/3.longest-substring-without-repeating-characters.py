@@ -57,22 +57,35 @@
 class Solution:
     def lengthOfLongestSubstring(self,s: str) -> int:
         ans = 0
-        lastLen = 0
-        tempSet = set()
-        start = 0
-        i = 0
-        while i < len(s):
-            tempSet.add(s[i])
-            if len(tempSet) <= lastLen:
-                lastLen = 1
-                start += 1
-                i = start
-                tempSet.clear()
-                tempSet.add(s[start])
-            else:  
-                lastLen = len(tempSet)
-                ans = max(lastLen,ans)
-            i += 1
+        sMap = {}
+        left = 0
+        length = len(s)
+
+        for right in range(length):
+            if s[right] not in sMap or sMap[s[right]] < left:
+                sMap[s[right]] = right
+                ans = max(ans,right-left+1)
+            else:
+                left = sMap[s[right]] + 1
+                sMap[s[right]] = right
         return ans
+        # ans = 0
+        # lastLen = 0
+        # tempSet = set()
+        # start = 0
+        # i = 0
+        # while i < len(s):
+        #     tempSet.add(s[i])
+        #     if len(tempSet) <= lastLen:
+        #         lastLen = 1
+        #         start += 1
+        #         i = start
+        #         tempSet.clear()
+        #         tempSet.add(s[start])
+        #     else:  
+        #         lastLen = len(tempSet)
+        #         ans = max(lastLen,ans)
+        #     i += 1
+        # return ans
 # @lc code=end
 
