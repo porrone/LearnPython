@@ -59,13 +59,17 @@
 import heapq
 class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
-        heap = []
-        for x,y in points:
-            dist = -(x*x+y*y)
-            if len(heap) == k:
-                heapq.heappushpop(heap,(dist,x,y))
-            else:
-                heapq.heappush(heap,(dist,x,y))
-        return [(x,y) for (dist,x,y) in heap]
+        for i in range(len(points)):
+            points[i].append(points[i][0]*points[i][0]+points[i][1]*points[i][1])
+        heapq.heapify(points)
+        return [ (x,y) for (x,y,z) in heapq.nsmallest(k,points,key = lambda x: x[2])]
+        # heap = []
+        # for x,y in points:
+        #     dist = -(x*x+y*y)
+        #     if len(heap) == k:
+        #         heapq.heappushpop(heap,(dist,x,y))
+        #     else:
+        #         heapq.heappush(heap,(dist,x,y))
+        # return [(x,y) for (dist,x,y) in heap]
 # @lc code=end
 
